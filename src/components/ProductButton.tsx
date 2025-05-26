@@ -17,10 +17,23 @@ export const ProductButton: React.FC<Props> = ({ product, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="w-full h-32 bg-white border rounded shadow hover:bg-blue-50 p-2 flex flex-col justify-between"
+      className="btn btn-outline border-1 hover:border-primary hover:bg-primary hover:text-white text-left p-0 overflow-hidden h-auto min-h-0 rounded-lg transition-all"
     >
-      <div className="text-sm font-bold">{product.name}</div>
-      <div className="text-sm text-gray-500">{product.price.toLocaleString()}원</div>
+      <div className="flex flex-col w-full">
+        {product.image && (
+          <div className="bg-base-200 h-32 flex items-center justify-center overflow-hidden">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="object-contain h-full w-full"
+            />
+          </div>
+        )}
+        <div className="p-3 text-sm">
+          <div className="font-bold text-lg">{product.name}</div>
+          <div className="text-gray-500 text-right">{product.price.toLocaleString()}원</div>
+        </div>
+      </div>
     </button>
   );
 };

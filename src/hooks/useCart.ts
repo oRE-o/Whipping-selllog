@@ -26,6 +26,10 @@ export const useCart = () => {
     setItems((prev) => prev.filter((i) => i.id !== id));
   };
 
+  const clear = () => {
+    setItems([]);
+  }
+
   const updateQuantity = (id: string, quantity: number) => {
   if (quantity < 1) return; // 수량이 1 미만이면 무시하기
 
@@ -39,5 +43,6 @@ export const useCart = () => {
     addItem,
     removeItem,
     updateQuantity,
+    clear,
   };
 };

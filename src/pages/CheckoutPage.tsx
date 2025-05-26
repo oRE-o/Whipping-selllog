@@ -11,34 +11,34 @@ export const CheckoutPage: React.FC<Props> = ({ items, onPaymentComplete, onCanc
   const [selectedMethod, setSelectedMethod] = useState<string>("");
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const methods = ["현금", "계좌이체", "페이"];
 
   return (
     <div className="p-6 max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4">결제 선택</h2>
-      <div className="mb-4">총 결제 금액: {total.toLocaleString()}원</div>
-      <div className="space-y-2">
-        {["현금", "계좌이체", "페이"].map((method) => (
-          <label key={method} className="flex items-center space-x-2">
-            <input
-              type="radio"
-              name="payment"
-              value={method}
-              checked={selectedMethod === method}
-              onChange={() => setSelectedMethod(method)}
-            />
-            <span>{method}</span>
-          </label>
+      <div className="mb-4 text-lg font-semibold">
+        총 결제 금액: <span className="">{total.toLocaleString()}원</span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        {methods.map((method) => (
+          <button
+            key={method}
+            type="button"
+            onClick={() => setSelectedMethod(method)}
+            className={`btn h-20 text-lg ${selectedMethod === method ? "btn-primary" : "btn-outline"}`}
+          >
+            {method}
+          </button>
         ))}
       </div>
-      <div className="mt-6 space-x-2">
-        <button
-          className="px-4 py-2 bg-gray-300 rounded"
-          onClick={onCancel}
-        >
+
+      <div className="flex justify-end gap-2">
+        <button className="btn btn-outline" onClick={onCancel}>
           취소
         </button>
         <button
-          className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+          className="btn btn-primary"
           disabled={!selectedMethod}
           onClick={() => onPaymentComplete(selectedMethod)}
         >

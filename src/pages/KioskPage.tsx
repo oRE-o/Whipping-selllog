@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { ProductGrid } from "../components/ProductGrid";
 import { CartSidebar } from "../components/CartSidebar";
-import { SettingsModal } from "../components/SettingsModal"; // 추가!
+import { SettingsModal } from "../components/SettingsModal";
 
 type KioskPageProps = {
   products: any[];
@@ -16,26 +16,30 @@ export const KioskPage: React.FC<KioskPageProps> = ({ products, onCheckout }) =>
   const total = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="flex h-screen">
-      <div className="w-2/3 p-4 overflow-y-auto">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">상품 목록</h2>
+    <div className="h-screen grid grid-cols-1 lg:grid-cols-3 bg-base-100">
+      {/* 좌측: 상품 목록 */}
+      <div className="lg:col-span-2 p-6 overflow-y-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold">상품 목록</h2>
           <button
             onClick={() => setShowSettings(true)}
-            className="text-sm bg-gray-200 px-3 py-1 rounded hover:bg-gray-300"
+            className="btn btn-sm btn-outline btn-neutral"
           >
             ⚙️ 설정
           </button>
         </div>
-        <ProductGrid products={products} onAddToCart={cart.addItem} />
+        <div className="space-y-4">
+          <ProductGrid products={products} onAddToCart={cart.addItem} />
+        </div>
       </div>
 
-      <div className="w-1/3 border-l p-4 bg-gray-100">
+      {/* 우측: 장바구니 */}
+      <div className="border-l bg-base-200 p-6 min-w-[400px]">
         <CartSidebar
           items={cart.items}
           onRemove={cart.removeItem}
           onUpdateQuantity={cart.updateQuantity}
-          onCheckout={() => onCheckout(cart.items)}
+          onCheckout={() => onCheckout(cart.items)}  // 여기서 바로 App에 알림
           total={total}
         />
       </div>

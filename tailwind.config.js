@@ -6,10 +6,16 @@ export default {
   ],
   theme: {
     extend: {
+        colors: {
+        primary: '#3b82f6', // 파란색
+        accent: '#facc15',  // 노란색
+        },
         fontFamily: {
-        sans: ['Pretendard', 'ui-sans-serif', 'system-ui'],
+        sans: ['CookieRun-Regular', 'ui-sans-serif', 'system-ui'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+      require('@tailwindcss/forms'),
+  ],
 }
