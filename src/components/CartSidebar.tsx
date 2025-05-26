@@ -7,6 +7,7 @@ type Props = {
   onUpdateQuantity: (id: string, quantity: number) => void;
   onRemove: (id: string) => void;
   onCheckout: () => void;
+  onClear: () => void; // 비우기 콜백 추가
   total: number;
 };
 
@@ -15,6 +16,7 @@ export const CartSidebar: React.FC<Props> = ({
   onUpdateQuantity,
   onRemove,
   onCheckout,
+  onClear,   // 받기
   total,
 }) => {
   return (
@@ -67,13 +69,23 @@ export const CartSidebar: React.FC<Props> = ({
         합계: {total.toLocaleString()}원
       </div>
 
-      <button
-        onClick={onCheckout}
-        className="btn btn-primary w-full"
-        disabled={items.length === 0}
-      >
-        결제하기
-      </button>
+      <div className="flex justify-between mt-4 gap-2">
+        <button
+          onClick={onClear}
+          className="btn btn-warning flex-1"
+          disabled={items.length === 0}
+        >
+          장바구니 비우기
+        </button>
+
+        <button
+          onClick={onCheckout}
+          className="btn btn-primary flex-1"
+          disabled={items.length === 0}
+        >
+          결제하기
+        </button>
+      </div>
     </div>
   );
 };

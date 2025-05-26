@@ -15,6 +15,11 @@ export const KioskPage: React.FC<KioskPageProps> = ({ products, onCheckout }) =>
 
   const total = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const handleCheckout = () => {
+    onCheckout(cart.items);
+    cart.clear();  // 결제 알림 후 장바구니 비우기!
+  };
+
   return (
     <div className="h-screen grid grid-cols-1 lg:grid-cols-3 bg-base-100">
       {/* 좌측: 상품 목록 */}
@@ -39,8 +44,9 @@ export const KioskPage: React.FC<KioskPageProps> = ({ products, onCheckout }) =>
           items={cart.items}
           onRemove={cart.removeItem}
           onUpdateQuantity={cart.updateQuantity}
-          onCheckout={() => onCheckout(cart.items)}  // 여기서 바로 App에 알림
+          onCheckout={handleCheckout} 
           total={total}
+          onClear={cart.clear}
         />
       </div>
 
