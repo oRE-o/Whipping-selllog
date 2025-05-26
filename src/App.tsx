@@ -114,6 +114,20 @@ export function App() {
           onCancel={handleOrderConfirm}
         />
       )}
+
+      <footer className="fixed bottom-4 right-4 z-50 bg-base-200 text-base-content px-4 py-2 rounded-box shadow-lg text-sm opacity-80 hover:opacity-100 transition">
+  Developed by{""}
+  <a
+    href="https://github.com/ore-o"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-1 text hover:underline"
+  >
+    oREo
+  </a>
+</footer>
     </>
+
+    
   );
 }

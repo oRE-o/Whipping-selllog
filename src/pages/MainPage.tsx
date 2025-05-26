@@ -67,7 +67,7 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4 py-8">
       <div className="card w-full max-w-2xl bg-base-100 shadow-xl">
         <div className="card-body space-y-6">
-          <h2 className="card-title text-3xl font-bold justify-center">굿즈샵 판매장부</h2>
+          <h2 className="card-title text-3xl font-bold justify-center">WhippingKiosk</h2>
 
           {/* 상품 업로드 */}
           <div className="form-control">
