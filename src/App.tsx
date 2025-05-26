@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MainPage } from "./pages/MainPage";
 import { KioskPage } from "./pages/KioskPage";
 import { CheckoutModal } from "./components/CheckoutModal";
