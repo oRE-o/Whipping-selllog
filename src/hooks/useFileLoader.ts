@@ -28,12 +28,12 @@ export const useFileLoader = () => {
 
     const parsedProducts: Product[] = data.map((item, idx) => ({
       id: `${idx}`, // 임시 id, 나중에 uuid 추천
-      category: item['분류'] || '',
-      cost: Number(item['원가']) || 0,
-      price: Number(item['가격']) || 0,
-      description: item['설명'] || '',
-      imageUrl: item['사진'] || '',
-      name: item['상품명'] || '',
+      category: item['category'] || '',
+      cost: Number(item['cost']) || 0,
+      price: Number(item['price']) || 0,
+      description: item['description'] || '',
+      imageUrl: item['imageUrl'] || '',
+      name: item['name'] || '',
     }));
 
     setProducts(parsedProducts);
