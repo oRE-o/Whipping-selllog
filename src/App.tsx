@@ -1,11 +1,7 @@
-import { FileLoaderTest } from './components/FileLoaderTest';
+import { MainPage } from "./pages/MainPage";
 
-function App() {
-  return (
-    <div className="App">
-      <FileLoaderTest />
-    </div>
-  );
+export function App() {
+  return <MainPage onReady={function (): void {
+    throw new Error("Function not implemented.");
+  } } />;
 }
-
-export default App;
