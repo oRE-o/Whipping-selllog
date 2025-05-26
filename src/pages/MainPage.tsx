@@ -28,7 +28,22 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
       alert("상품 파일을 먼저 업로드 해주세요!");
       return;
     }
+
+    // 기존 장부 파일을 선택했고, 새로 시작이 아닌 경우
+  if (!useNewLog && salesLogFile) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target?.result as string;
+      localStorage.setItem("ledger", content); // CSV 내용을 localStorage 저장
+      onReady(); // 준비 완료
+    };
+    reader.readAsText(salesLogFile);
+  } else {
+    // 새로 시작하는 경우 → 초기 헤더 저장
+    const header = "구매일시,오더ID,상품,단가,수량,합계,결제수단";
+    localStorage.setItem("ledger", header);
     onReady();
+  }
   };
 
   return (

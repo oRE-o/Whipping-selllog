@@ -47,6 +47,13 @@ export const CartSidebar: React.FC<Props> = ({
       <div className="text-right font-bold mt-4">
         합계: {total.toLocaleString()}원
       </div>
+        <button
+            onClick={onCheckout}
+            className="w-full mt-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            disabled={items.length === 0} // 장바구니가 비었으면 비활성화
+            >
+            결제하기
+        </button>
     </div>
   );
 };
