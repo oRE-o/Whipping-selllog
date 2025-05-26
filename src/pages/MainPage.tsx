@@ -68,6 +68,9 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
       <div className="card w-full max-w-2xl bg-base-100 shadow-xl">
         <div className="card-body space-y-6">
           <h2 className="card-title text-3xl font-bold justify-center">WhippingKiosk</h2>
+            <span className="label-text text-lg font-semibold self-center -mt-7 ">더 나은 부스 운영을 위한 새로운 아이디어</span>
+
+        <a href="https://indigo-iodine-939.notion.site/WhippingKiosk-1ffb3ea8c2a78045a23cfa963c0886f4" className="self-center -mt-7 ">🐣처음 해 보신다면 여기를 눌러주세요🐣</a>
 
           {/* 상품 업로드 */}
           <div className="form-control">
@@ -121,7 +124,7 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
                   disabled={!salesLogFile}
                   onChange={() => setLogSource("file")}
                 />
-                <span>파일에서 불러오기</span>
+                <span>장부 파일 불러오기</span>
               </label>
 
               <label className="flex items-center gap-2 cursor-pointer">
@@ -133,7 +136,7 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
                   onChange={() => setLogSource("local")}
                 />
                 <span>
-                  브라우저 저장값 불러오기
+                  이어서 진행하기 (브라우저 저장값 불러오기)
                   {lastLocalTimestamp && (
                     <span className="ml-1 text-sm text-gray-500">
                       (최근: {new Date(lastLocalTimestamp).toLocaleString()})
@@ -150,7 +153,7 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
               className="btn btn-primary w-full sm:w-auto"
               onClick={handleConfirm}
             >
-              ✅ 확인
+              부스 운영 시작하기
             </button>
           </div>
         </div>
