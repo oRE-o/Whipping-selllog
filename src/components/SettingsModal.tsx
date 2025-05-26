@@ -11,7 +11,7 @@ export const SettingsModal: React.FC<Props> = ({ onClose }) => {
   const lines = data.trim().split("\n");
 
   // 합계 수식 줄 추가
-  const totalFormulaLine = [ '', '', '', '', '', `=SUM(F2:F${lines.length})`, '' ].join(",");
+  const totalFormulaLine = [ '', '', '', '', '총 판매액', `=SUM(F2:F${lines.length})`, '' ].join(",");
 
   const csvWithTotal = [...lines, totalFormulaLine].join("\n");
   const blob = new Blob([BOM + csvWithTotal], { type: "text/csv;charset=utf-8;" });
