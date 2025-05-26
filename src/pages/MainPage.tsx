@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useFileLoader } from "../hooks/useFileLoader";
 
 type MainPageProps = {
+  products: any[];
+  loadFile: (file: File) => void;
   onReady: () => void;
 };
 
-export const MainPage: React.FC<MainPageProps> = ({ onReady }) => {
-  const { products, loadFile } = useFileLoader();
-
-  const [salesLogFile, setSalesLogFile] = useState<File | null>(null);
+export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady }) => {
   const [useNewLog, setUseNewLog] = useState(true);
+  const [salesLogFile, setSalesLogFile] = useState<File | null>(null);
 
   const onProductFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -29,7 +28,6 @@ export const MainPage: React.FC<MainPageProps> = ({ onReady }) => {
       alert("상품 파일을 먼저 업로드 해주세요!");
       return;
     }
-    // 이후 로직에서 salesLogFile과 useNewLog 활용 가능
     onReady();
   };
 
