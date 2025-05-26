@@ -136,7 +136,7 @@ export const MainPage: React.FC<MainPageProps> = ({ products, loadFile, onReady 
                   onChange={() => setLogSource("local")}
                 />
                 <span>
-                  이어서 진행하기 (브라우저 저장값 불러오기)
+                  이어서 진행하기 (브라우저에서 불러오기)
                   {lastLocalTimestamp && (
                     <span className="ml-1 text-sm text-gray-500">
                       (최근: {new Date(lastLocalTimestamp).toLocaleString()})
