@@ -6,16 +6,25 @@ type Props = {
 
 export const SettingsModal: React.FC<Props> = ({ onClose }) => {
   const handleDownload = () => {
-    const data = localStorage.getItem("ledger") || "";
-    const BOM = "\uFEFF";
-    const blob = new Blob([BOM + data], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", `ledger-${Date.now()}.csv`);
-    link.click();
-    URL.revokeObjectURL(url);
-  };
+  const data = localStorage.getItem("ledger") || "";
+  const BOM = "\uFEFF";
+  const lines = data.trim().split("\n");
+
+  // 합계 수식 줄 추가
+  const totalFormulaLine = [ '', '', '', '', '', `=SUM(F2:F${lines.length})`, '' ].join(",");
+
+  const csvWithTotal = [...lines, totalFormulaLine].join("\n");
+  const blob = new Blob([BOM + csvWithTotal], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", `ledger-${Date.now()}.csv`);
+  link.click();
+
+  URL.revokeObjectURL(url);
+};
+
 
   return (
     <div className="modal modal-open">
